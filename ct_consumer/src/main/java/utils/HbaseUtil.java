@@ -19,8 +19,9 @@ import java.util.TreeSet;
  * 1.namespace ====》 命名空间
  * 2.createTable ====》 表
  * 3.isTable ====》 判断表是否存在
- * 4.Regin、RowKey、分区键
+ * 4.Region、RowKey、分区键
  */
+
 public class HbaseUtil {
     /**
      *初始化命名空间
@@ -125,6 +126,64 @@ public class HbaseUtil {
 
 
     }
+
+    //热点问题
+
+    /**
+     * 生成rowkey:regionCode_caller_buildTime_callee_flag_duration
+     * @param regionCode    散列的键
+     * @param caller    主叫
+     * @param buildTime 建立时间
+     * @param callee    被叫
+     * @param flag      表面主叫还是被叫
+     * @param duration  听话持续时间
+     * @return  返回rowkey
+     */
+    public static String genRowkey(String regionCode, String caller, String buildTime, String callee,String flag, String duration){
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(regionCode +"_")
+                .append(caller +"_")
+                .append(buildTime +"_")
+                .append(callee +"_")
+                .append(flag +"_")
+                .append(duration);
+
+        return sb.toString();
+
+    }
+
+    //随便取出数据，做离散
+
+    /**
+     * 生成分区号
+     * @param caller 主叫
+     * @param buildTime 童话建立时间
+     * @param regions   region个数
+     * @return  返回分区号
+     */
+    public static String genRegionCode(String caller, String buildTime, int regions){
+        int len = caller.length();
+        //取出主叫后四位
+        String lastPhone = caller.substring(len - 4);
+        //取出年和月 buildTime：2018-06-22 13：27：21
+        String ym = buildTime
+                .replaceAll("-", "")
+                .replaceAll(" ", "")
+                .replaceAll(":", "")
+                .substring(0,6);
+        //离散操作1
+        Integer x = Integer.valueOf(lastPhone) ^ Integer.valueOf(ym);
+        //离散操作2
+        int y = x.hashCode();
+        //生成分区号
+        int regionCode = y % regions;
+        DecimalFormat df = new DecimalFormat("00");
+        //格式化分区号
+        return df.format(regionCode);
+    }
+
+
 
 
 
