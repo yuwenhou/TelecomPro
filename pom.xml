@@ -11,6 +11,7 @@
     <modules>
         <module>ct_producer</module>
         <module>ct_consumer</module>
+        <module>ct_analysis</module>
     </modules>
 
     <properties>
