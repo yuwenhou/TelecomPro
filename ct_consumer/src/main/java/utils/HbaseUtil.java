@@ -72,6 +72,8 @@ public class HbaseUtil {
             //列描述器
             htd.addFamily(new HColumnDescriptor(cf));
         }
+        //增加协处理器
+        htd.addCoprocessor("hbase.CalleeWriteObserver");
         //创建表
         admin.createTable(htd,genSplitKeys(regions));
         //关闭对象

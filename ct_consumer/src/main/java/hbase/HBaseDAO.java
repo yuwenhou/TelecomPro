@@ -24,7 +24,7 @@ public class HBaseDAO {
     private int regions;
     private static final Configuration conf ;
     private SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
     private Connection connection;
     private HTable table;
 
@@ -79,7 +79,7 @@ public class HBaseDAO {
             //散列的分区号
             String regionCode = HbaseUtil.genRegionCode(caller, buildTime, regions);
             //RowKey
-            String rowkey = HbaseUtil.genRowkey(regionCode, caller, buildTime, callee, "1", duration);
+            String rowkey = HbaseUtil.genRowkey(regionCode, caller, buildTimeReplace, callee, "1", duration);
             //向表中插数据
             Put put = new Put(Bytes.toBytes(rowkey));
             put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("caller"),Bytes.toBytes(caller));

@@ -8,7 +8,9 @@ producer.ProducerLog
 
 #### 2.1 utils
 utils.ConnectionInstance 连接初始化
+
 utils.HbaseUtil 初始化hbase表格
+
 utils.PropertiesUtil 获取配置文件的参数初始化
 
 #### 2.2 kafka
