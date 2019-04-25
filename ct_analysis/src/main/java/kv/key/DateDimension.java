@@ -19,28 +19,30 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DataDimension extends BaseDimension {
+public class DateDimension extends BaseDimension {
 
     private String year;
     private String month;
     private String day;
 
 
+
+
     @Override
     public int compareTo(BaseDimension o) {
-        DataDimension anotherDataDimension = (DataDimension) o;
-        int result = this.year.compareTo(anotherDataDimension.year);
+        DateDimension anotherDateDimension = (DateDimension) o;
+        int result = this.year.compareTo(anotherDateDimension.year);
         if (result!= 0){
             return result;
         }
 
-        result = this.month.compareTo(anotherDataDimension.month);
+        result = this.month.compareTo(anotherDateDimension.month);
         if (result != 0){
             return result;
         }
 
 
-        result = this.day.compareTo(anotherDataDimension.day);
+        result = this.day.compareTo(anotherDateDimension.day);
         return result;
     }
 
@@ -60,9 +62,9 @@ public class DataDimension extends BaseDimension {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o){ return true;}
         if (o == null || getClass() != o.getClass()) return false;
-        DataDimension that = (DataDimension) o;
+        DateDimension that = (DateDimension) o;
         return Objects.equals(year, that.year) &&
                 Objects.equals(month, that.month) &&
                 Objects.equals(day, that.day);

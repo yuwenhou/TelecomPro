@@ -22,13 +22,13 @@ import java.util.Objects;
 public class ComDimension extends BaseDimension {
 
     private ContactDimension contactDimension = new ContactDimension();
-    private DataDimension dataDimension = new DataDimension();
+    private DateDimension dateDimension = new DateDimension();
 
 
     @Override
     public int compareTo(BaseDimension o) {
         ComDimension anotherComDimension = (ComDimension) o;
-        int result = this.dataDimension.compareTo(anotherComDimension.dataDimension);
+        int result = this.dateDimension.compareTo(anotherComDimension.dateDimension);
         if (result!= 0){
             return result;
         }
@@ -40,13 +40,13 @@ public class ComDimension extends BaseDimension {
     @Override
     public void write(DataOutput out) throws IOException {
         contactDimension.write(out);
-        dataDimension.write(out);
+        dateDimension.write(out);
     }
 
     @Override
     public void readFields(DataInput in) throws IOException {
         contactDimension.readFields(in);
-        dataDimension.readFields(in);
+        dateDimension.readFields(in);
     }
 
     @Override
@@ -55,11 +55,11 @@ public class ComDimension extends BaseDimension {
         if (o == null || getClass() != o.getClass()) return false;
         ComDimension that = (ComDimension) o;
         return Objects.equals(contactDimension, that.contactDimension) &&
-                Objects.equals(dataDimension, that.dataDimension);
+                Objects.equals(dateDimension, that.dateDimension);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contactDimension, dataDimension);
+        return Objects.hash(contactDimension, dateDimension);
     }
 }
