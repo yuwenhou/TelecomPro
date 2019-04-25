@@ -1,9 +1,6 @@
 package kv.base;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
@@ -14,10 +11,7 @@ import java.io.IOException;
  * @description:
  * @time:2019/4/24
  */
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public abstract class BaseDimension implements WritableComparable<BaseDimension> {
 
     public abstract int compareTo(BaseDimension o);

@@ -25,7 +25,12 @@ public class DateDimension extends BaseDimension {
     private String month;
     private String day;
 
-
+    public DateDimension(String year, String month, String day) {
+        super();
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
 
 
     @Override
@@ -62,8 +67,10 @@ public class DateDimension extends BaseDimension {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){ return true;}
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o){
+            return true;}
+        if (o == null || getClass() != o.getClass()){
+            return false;}
         DateDimension that = (DateDimension) o;
         return Objects.equals(year, that.year) &&
                 Objects.equals(month, that.month) &&

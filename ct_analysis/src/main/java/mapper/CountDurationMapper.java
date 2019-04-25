@@ -74,10 +74,11 @@ public class CountDurationMapper extends TableMapper<ComDimension, Text> {
         String month = buildTime.substring(4, 6);
         String day = buildTime.substring(6, 8);
 
-//        DateDimension yearDimension = new DateDimension(year, month, day);
-//        DateDimension monthDimension = new DateDimension(year, month, day);
-//        DateDimension dayDimension = new DateDimension(year, month, day);
-//
+        //与视频差异，在dimension建立构造函数传参
+        DateDimension yearDimension = new DateDimension(year, "-1", "-1");
+        DateDimension monthDimension = new DateDimension(year, month, "-1");
+        DateDimension dayDimension = new DateDimension(year, month, day);
+
 
     }
 }
