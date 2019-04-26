@@ -23,9 +23,7 @@ hbase.CalleeWriteObserver 协处理器，在收到数据的同时在f2加入被�
 两种方法：3.1sqoop
         3.2Yarn（本项目选用）
 
-3.1 kv 映射关系比较及包结构
-3.1.1 base
-3.1.2 key
-3.1.3 value
+
+### 4.ct_web 数据可视化
 
 
