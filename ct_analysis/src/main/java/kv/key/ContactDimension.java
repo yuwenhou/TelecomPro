@@ -48,4 +48,4 @@ public class ContactDimension extends BaseDimension {
         this.telephone = in.readUTF();
         this.name = in.readUTF();
     }
-}
+            }

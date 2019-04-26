@@ -1,6 +1,7 @@
 package mapper;
 
 import kv.key.ComDimension;
+import kv.key.ContactDimension;
 import kv.key.DateDimension;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
@@ -74,10 +75,41 @@ public class CountDurationMapper extends TableMapper<ComDimension, Text> {
         String month = buildTime.substring(4, 6);
         String day = buildTime.substring(6, 8);
 
-        //与视频差异，在dimension建立构造函数传参
+
         DateDimension yearDimension = new DateDimension(year, "-1", "-1");
         DateDimension monthDimension = new DateDimension(year, month, "-1");
         DateDimension dayDimension = new DateDimension(year, month, day);
+
+        //主叫callerContactDimension
+        ContactDimension callerContactDimension = new ContactDimension(caller,phoneMap.get(caller));
+        comDimension.setContactDimension(callerContactDimension);
+
+        //年
+        comDimension.setDateDimension(yearDimension);
+        context.write(comDimension,durationText);
+        //年
+        comDimension.setDateDimension(monthDimension);
+        context.write(comDimension,durationText);
+        //年
+        comDimension.setDateDimension(dayDimension);
+        context.write(comDimension,durationText);
+
+
+        //被叫calleeContactDimension
+        ContactDimension calleeContactDimension = new ContactDimension(callee,phoneMap.get(callee));
+        comDimension.setContactDimension(calleeContactDimension);
+
+        //年
+        comDimension.setDateDimension(yearDimension);
+        context.write(comDimension,durationText);
+        //年
+        comDimension.setDateDimension(monthDimension);
+        context.write(comDimension,durationText);
+        //年
+        comDimension.setDateDimension(dayDimension);
+        context.write(comDimension,durationText);
+
+
 
 
     }

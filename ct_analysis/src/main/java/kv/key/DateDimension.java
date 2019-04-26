@@ -11,10 +11,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Objects;
 
-/**
- * @description:
- * @time:2019/4/24  */
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -24,13 +20,6 @@ public class DateDimension extends BaseDimension {
     private String year;
     private String month;
     private String day;
-
-    public DateDimension(String year, String month, String day) {
-        super();
-        this.year = year;
-        this.month = month;
-        this.day = day;
-    }
 
 
     @Override
